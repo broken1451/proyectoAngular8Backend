@@ -26,7 +26,8 @@ app.get("/", (req, res, next) => {
 
 
 // crear un nuevo usuario
-app.post("/", middleware.verificaToken ,(req, res) => {
+// app.post("/", middleware.verificaToken ,(req, res) => {
+app.post("/" ,(req, res) => {
   var body = req.body;
   var usuario = new Usuario({
     nombre: body.nombre,
@@ -43,12 +44,12 @@ app.post("/", middleware.verificaToken ,(req, res) => {
         errors: err,
       });
     }
-
+    usuarioCreado.password = ':)'
     res.status(201).json({
       ok: true,
       mensaje: "usuario creado",
       usuarioCreado: usuarioCreado,
-      usuarioToken: usuarioToken
+      // usuarioToken: usuarioToken
     });
   });
 });
