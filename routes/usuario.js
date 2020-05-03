@@ -1,23 +1,23 @@
-var express = require("express");
-var bcrypt = require("bcryptjs");
+var express = require('express');
+var bcrypt = require('bcryptjs');
 var middleware = require('../middleware/autenticacion');
 var app = express();
-var Usuario = require("../models/usuario");
+var Usuario = require('../models/usuario');
 
 // obtener too slos usuario
-app.get("/", (req, res, next) => {
-  Usuario.find({}, "nombre email img").exec((err, usuarios) => {
+app.get('/', (req, res, next) => {
+  Usuario.find({}, 'nombre email img').exec((err, usuarios) => {
     if (err) {
       return res.status(500).json({
         ok: false,
-        mensaje: "Error cargando usuarios",
+        mensaje: 'Error cargando usuarios',
         errors: err,
       });
     }
 
     res.status(200).json({
       ok: true,
-      mensaje: "Get usuarios",
+      mensaje: 'Get usuarios',
       usuarios: usuarios,
     });
   });
@@ -26,8 +26,8 @@ app.get("/", (req, res, next) => {
 
 
 // crear un nuevo usuario
-// app.post("/", middleware.verificaToken ,(req, res) => {
-app.post("/" ,(req, res) => {
+// app.post('/', middleware.verificaToken ,(req, res) => {
+app.post('/' ,(req, res) => {
   var body = req.body;
   var usuario = new Usuario({
     nombre: body.nombre,
@@ -40,14 +40,14 @@ app.post("/" ,(req, res) => {
     if (err) {
       return res.status(400).json({
         ok: false,
-        mensaje: "Error al crear usuarios",
+        mensaje: 'Error al crear usuarios',
         errors: err,
       });
     }
     usuarioCreado.password = ':)'
     res.status(201).json({
       ok: true,
-      mensaje: "usuario creado",
+      mensaje: 'usuario creado',
       usuarioCreado: usuarioCreado,
       // usuarioToken: usuarioToken
     });
@@ -55,7 +55,7 @@ app.post("/" ,(req, res) => {
 });
 
 // Actualizar un nuevo usuario
-app.put("/:id", (req, res) => {
+app.put('/:id', (req, res) => {
   var id = req.params.id;
   var body = req.body;
 
@@ -63,7 +63,7 @@ app.put("/:id", (req, res) => {
     if (err) {
       return res.status(500).json({
         ok: false,
-        mensaje: "Error al buscar usuarios",
+        mensaje: 'Error al buscar usuarios',
         errors: err,
       });
     }
@@ -72,7 +72,7 @@ app.put("/:id", (req, res) => {
       return res.status(400).json({
         ok: false,
         mensaje: `El usuario con el id ${id} no existe`,
-        errors: { message: "No existe  un usuario con ese ID" },
+        errors: { message: 'No existe  un usuario con ese ID' },
       });
     }
 
@@ -83,15 +83,15 @@ app.put("/:id", (req, res) => {
       if (err) {
         return res.status(400).json({
           ok: false,
-          mensaje: "Error al actualizar usuario",
+          mensaje: 'Error al actualizar usuario',
           errors: err,
         });
       }
 
-      usuarioId.password = ":)";
+      usuarioId.password = ':)';
       res.status(201).json({
         ok: true,
-        mensaje: "usuario actualizado",
+        mensaje: 'usuario actualizado',
         usuarioActualizado: usuarioId,
       });
     });
@@ -99,14 +99,14 @@ app.put("/:id", (req, res) => {
 });
 
 // Eliminar un usuario
-app.delete("/:id", (req, res) => {
+app.delete('/:id', (req, res) => {
   var id = req.params.id;
 
   Usuario.findByIdAndRemove(id, (err, usuarioBorrado) => {
     if (err) {
       return res.status(500).json({
         ok: false,
-        mensaje: "Error al borrar usuario",
+        mensaje: 'Error al borrar usuario',
         errors: err,
       });
     }
@@ -114,13 +114,13 @@ app.delete("/:id", (req, res) => {
     if (!usuarioBorrado) {
       return res.status(500).json({
         ok: false,
-        mensaje: "No existe el usuario con ese id",
-        errors: { message: "no existe ese usuario con ese id", errors: err },
+        mensaje: 'No existe el usuario con ese id',
+        errors: { message: 'no existe ese usuario con ese id', errors: err },
       });
     }
     res.status(200).json({
       ok: true,
-      mensaje: "usuario borrado",
+      mensaje: 'usuario borrado',
       usuarioBorrado: usuarioBorrado,
     });
   });
