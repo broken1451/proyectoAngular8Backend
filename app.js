@@ -22,6 +22,7 @@ app.use(function(req, res, next) {
 
 // importanr rutas
 var usuarioRoutes = require('./routes/usuario');
+var materiaRoutes = require('./routes/materia');
 var loginRoutes = require('./routes/login');
 var appRoutes = require('./routes/app');
 
@@ -43,6 +44,7 @@ moongose.connect('mongodb://localhost:27017/SistemaEstudiantes',{ useUnifiedTopo
 
 // Rutas
 app.use('/usuario', usuarioRoutes);
+app.use('/materia', materiaRoutes);
 app.use('/login', loginRoutes);
 app.use('/', appRoutes);
 
