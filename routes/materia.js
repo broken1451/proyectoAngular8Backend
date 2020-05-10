@@ -33,7 +33,7 @@ app.get("/", (req, res) => {
 // ==========================================
 app.get("/:id", (req, res) => {
   var id = req.params.id;
-  // console.log(req.params)
+  // console.log('req.params: ', req.params)
   Materia.findById(id, (err, materiaID) => {
     if (err) {
       return res.status(500).json({
@@ -51,6 +51,7 @@ app.get("/:id", (req, res) => {
     }
     res.status(200).json({
       ok: true,
+      id: id,
       materiaID: materiaID,
     });
   }).populate("usuario", "nombre email");
@@ -75,7 +76,7 @@ app.post("/", (req, res) => {
     if (err) {
       return res.status(500).json({
         ok: false,
-        mensaje: "Error crear Hospital",
+        mensaje: "Error crear materia",
         errors: err,
       });
     }
@@ -83,7 +84,7 @@ app.post("/", (req, res) => {
       ok: true,
       mensaje: "Materia creada",
       // body: body,
-      materiaGuardada: materiaGuardada,
+      materiaGuardada: materiaGuardada
     });
   });
 });
@@ -94,6 +95,7 @@ app.post("/", (req, res) => {
 app.put("/:id", (req, res) => {
   var id = req.params.id;
   var body = req.body;
+  // console.log(body)
 
   Materia.findById(id, (err, materiaId) => {
     if (err) {
@@ -138,7 +140,7 @@ app.put("/:id", (req, res) => {
 //=============================================================================================
 app.delete("/:id", (req, res) => {
   var id = req.params.id;
-  var body = req;
+  var body = req.body;
   Materia.findByIdAndRemove(id, (err, materiaBorrada) => {
     if (err) {
       return res.status(500).json({
@@ -158,8 +160,9 @@ app.delete("/:id", (req, res) => {
     }
     res.status(200).json({
       ok: true,
+      id: id,
       materiaBorrada: materiaBorrada,
-      // usuarioToken: body
+      // body: body
     });
   });
 });
