@@ -24,6 +24,8 @@ app.use(function(req, res, next) {
 var usuarioRoutes = require('./routes/usuario');
 var materiaRoutes = require('./routes/materia');
 var estudianteRoutes = require('./routes/estudiante');
+var uploadRoutes = require('./routes/upload');
+var imagenesRoutes = require('./routes/imagenes');
 var loginRoutes = require('./routes/login');
 var appRoutes = require('./routes/app');
 
@@ -48,6 +50,8 @@ app.use('/usuario', usuarioRoutes);
 app.use('/materia', materiaRoutes);
 app.use('/estudiante', estudianteRoutes);
 app.use('/login', loginRoutes);
+app.use('/upload', uploadRoutes);
+app.use('/img', imagenesRoutes);
 app.use('/', appRoutes);
 
 
