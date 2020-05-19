@@ -17,8 +17,8 @@ app.put("/:tipoImagen/:id", (req, res, next) => {
   // tipoImagen = usuarios, estudiante, materia
   var tipoImagen = req.params.tipoImagen;
   var id = req.params.id;
-  // console.log(id)
-  // console.log(tipoImagen)
+  console.log(id)
+  console.log(tipoImagen)
 
   // tipoImagen de archivos de coleccion usuario o estudiantes
   var tipoImagenesValidos = ['usuario', 'estudiante'];
@@ -41,6 +41,7 @@ app.put("/:tipoImagen/:id", (req, res, next) => {
   // Obtener nombre del archivo
   var nombreArchivo = req.files.imagen; //imagen es el nombre que esta en el postman
   var nombreArchivoSeparado = nombreArchivo.name.split('.'); // separar en un arreglo el archivo para tener su extension
+  // var extensionArchivo = nombreArchivoSeparado[ultimapocicion.length - 1]; // obtener la extension del archivo
   var extensionArchivo = nombreArchivoSeparado[nombreArchivoSeparado.length - 1]; // obtener la extension del archivo
 
   // Extensiones permitidas
@@ -59,7 +60,7 @@ app.put("/:tipoImagen/:id", (req, res, next) => {
  // Nombre de archivo personalizado
     // idusuario-nroramdom.png nombre de la imagen
     // var numeroRamdom = Math.random();
-    // var nombreArchivo = `${ id }-${Math.random()}
+    // var nombreArchivo = `${ id }-${Math.random()}j
     // var nombreArchivo = `${ id }-${ new Date().getMilliseconds() }.${extensionArchivo}`;
   var nombreImagenPersonalizado = `${id}-${new Date().getMilliseconds()}.${extensionArchivo}`;
 
