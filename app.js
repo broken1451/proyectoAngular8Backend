@@ -51,7 +51,7 @@ app.use('/materia', materiaRoutes);
 app.use('/estudiante', estudianteRoutes);
 app.use('/login', loginRoutes);
 app.use('/upload', uploadRoutes);
-app.use('/img', imagenesRoutes);
+app.use('/img', imagenesRoutes);          
 app.use('/', appRoutes);
 
 
