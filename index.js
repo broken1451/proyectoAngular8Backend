@@ -57,6 +57,11 @@ app.use('/upload', uploadRoutes);
 app.use('/img', imagenesRoutes);          
 app.use('/', appRoutes);
 
+// lo ultimo
+app.get('*', (req,res) => {
+    res.sendFile(path.resolve(__dirname,'pulic/index.html'))
+});
+
 
 // app.listen(3000, () => { 
 app.listen(process.env.PORT, () => {
