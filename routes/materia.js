@@ -84,7 +84,7 @@ app.post("/", (req, res) => {
       ok: true,
       mensaje: "Materia creada",
       // body: body,
-      materiaGuardada: materiaGuardada
+      materiaGuardada: materiaGuardada,
     });
   });
 });

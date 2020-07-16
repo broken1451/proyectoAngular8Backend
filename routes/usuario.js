@@ -15,7 +15,7 @@ app.get('/', (req, res, next) => {
       });
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       ok: true,
       mensaje: 'Get usuarios',
       usuarios: usuarios,
@@ -45,7 +45,8 @@ app.post('/' ,(req, res) => {
       });
     }
     usuarioCreado.password = ':)'
-    res.status(201).json({
+    
+    return res.status(201).json({
       ok: true,
       mensaje: 'usuario creado',
       usuarioCreado: usuarioCreado,
@@ -89,7 +90,8 @@ app.put('/:id', (req, res) => {
       }
 
       usuarioId.password = ':)';
-      res.status(201).json({
+
+      return  res.status(201).json({
         ok: true,
         mensaje: 'usuario actualizado',
         usuarioActualizado: usuarioId,
@@ -118,7 +120,8 @@ app.delete('/:id', (req, res) => {
         errors: { message: 'no existe ese usuario con ese id', errors: err },
       });
     }
-    res.status(200).json({
+
+    return res.status(200).json({
       ok: true,
       mensaje: 'usuario borrado',
       usuarioBorrado: usuarioBorrado,
